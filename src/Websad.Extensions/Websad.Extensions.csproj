@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Websad.Api\Websad.Api.csproj" />
+    <ProjectReference Include="..\Websad.Core\Websad.Core.csproj" />
+    <ProjectReference Include="..\Websad.Services\Websad.Services.csproj" />
+    <ProjectReference Include="..\Websad.Storage.Core\Websad.Storage.Core.csproj" />
+    <ProjectReference Include="..\Websad.Storage.SQLite\Websad.Storage.SQLite.csproj" />
+  </ItemGroup>
+
+</Project>

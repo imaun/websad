@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Websad.Core\Websad.Core.csproj" />
+    <ProjectReference Include="..\Websad.Services.Data\Websad.Services.Data.csproj" />
+    <ProjectReference Include="..\Websad.Storage.Core\Websad.Storage.Core.csproj" />
+  </ItemGroup>
+
+</Project>

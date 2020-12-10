@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DNTPersianUtils.Core" Version="3.6.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Websad.Core\Websad.Core.csproj" />
+  </ItemGroup>
+
+</Project>
