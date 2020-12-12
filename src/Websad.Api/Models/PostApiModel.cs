@@ -32,6 +32,8 @@ namespace Websad.Api.Models
         public int OrderNumber { get; set; }
         [MaxLength(2000)]
         public string Tags { get; set; } //Sepetared by semicolon ;
+        public string MetaDescription { get; set; }
+        public string MetaRobots { get; set; }
 
         public IFormFile CoverPhotoFile { get; set; }
     }
@@ -64,6 +66,8 @@ namespace Websad.Api.Models
         public int OrderNumber { get; set; }
         [MaxLength(2000)]
         public string Tags { get; set; } //Sepetared by semicolon ;
+        public string MetaDescription { get; set; }
+        public string MetaRobots { get; set; }
 
         public IFormFile CoverPhotoFile { get; set; }
     }
@@ -92,5 +96,7 @@ namespace Websad.Api.Models
         public int UserId { get; set; }
         public string UserTitle { get; set; }
         public string CategoryTitle { get; set; }
+        public string MetaDescription { get; set; }
+        public string MetaRobots { get; set; }
     }
 }

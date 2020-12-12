@@ -26,6 +26,8 @@ namespace Websad.Services.Data
         public string AltTitle { get; set; }
         public int OrderNumber { get; set; }
         public string Tags { get; set; } //Sepetared by semicolon ;
+        public string MetaDescription { get; set; }
+        public string MetaRobots { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifyDate { get; set; }
         public int UserId { get; set; }
@@ -54,6 +56,8 @@ namespace Websad.Services.Data
         public string AltTitle { get; set; }
         public int OrderNumber { get; set; }
         public string Tags { get; set; } //Sepetared by semicolon ;
+        public string MetaDescription { get; set; }
+        public string MetaRobots { get; set; }
     }
 
     public class PostUpdateDto {
@@ -75,6 +79,8 @@ namespace Websad.Services.Data
         public string AltTitle { get; set; }
         public int OrderNumber { get; set; }
         public string Tags { get; set; } //Sepetared by semicolon ;
+        public string MetaDescription { get; set; }
+        public string MetaRobots { get; set; }
     }
 
     public class PostViewItemDto {

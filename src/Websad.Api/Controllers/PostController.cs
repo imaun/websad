@@ -132,5 +132,32 @@ namespace Websad.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("get/{id}")]
+        public async Task<IActionResult> Get(int id) {
+            var post = await _postService.GetPostAsync(id);
+            try {
+                post.CheckReferenceIsNull(nameof(post));
+                var result = new ApiModel<PostApiModel> {
+                    Model = post.Adapt<PostApiModel>(),
+                    Message = ApiTextDisplay.SuccessOperation
+                };
+
+                return Ok(result);
+            }
+            catch(NullReferenceException e) {
+                return NotFound(new ApiModel<PostApiModel> {
+                    HasError = true,
+                    Model = null,
+                    Message = ApiTextDisplay.NotFound
+                });
+            }
+            catch(Exception e) {
+                return BadRequest(new ApiModel<PostApiModel> {
+                    HasError = true,
+                    Model = null,
+                    Message = e.GetBaseException().Message
+                });
+            }
+        }
     }
 }

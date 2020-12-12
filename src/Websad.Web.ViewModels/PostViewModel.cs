@@ -30,6 +30,8 @@ namespace Websad.Web.ViewModels
         public string AltTitle { get; set; }
         public int OrderNumber { get; set; }
         public string Tags { get; set; } //Sepetared by semicolon ;
+        public string MetaDescription { get; set; }
+        public string MetaRobots { get; set; }
         public DateTime CreateDate { get; set; }
         public string CreateDateDisplay => CreateDate.ToPersianDateTextify();
         public DateTime ModifyDate { get; set; }

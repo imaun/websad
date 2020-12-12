@@ -32,6 +32,7 @@ namespace Websad.Api.Controllers
             model.CheckArgumentIsNull(nameof(model));
 
             var data = model.Adapt<CategoryCreateDto>();
+            
             CategoryResultDto category;
             try {
                 category = await _categoryService.CreateAsync(data);

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Websad.Storage.SQLite;
 
 namespace Websad.Storage.SQLite.Migrations
 {
     [DbContext(typeof(SQLiteDbContext))]
-    partial class SQLiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201210150503_PostSeoTags")]
+    partial class PostSeoTags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,14 +230,10 @@ namespace Websad.Storage.SQLite.Migrations
                         .IsUnicode(true);
 
                     b.Property<string>("MetaDescription")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(1000)
-                        .IsUnicode(true);
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("MetaRobots")
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(1000)
-                        .IsUnicode(true);
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ModifyDate")
                         .HasColumnType("TEXT");
@@ -526,12 +524,12 @@ namespace Websad.Storage.SQLite.Migrations
                         new
                         {
                             Id = 1,
-                            ApiKey = "1jDe3Zmr8dUNBXfjrWodOHRvHGmXNoVk7t02aoA6",
+                            ApiKey = "9xRQ66fk9KNKnwIa9bW32JNHvv6yqBC7GeNThDo1",
                             Email = "admin@site.com",
                             Enabled = true,
                             LockoutEnabled = false,
                             PasswordHash = "e4uD8ajpPMmqVo5Rs/hL1g==",
-                            RegisterDate = new DateTime(2020, 12, 10, 15, 18, 10, 494, DateTimeKind.Utc).AddTicks(610),
+                            RegisterDate = new DateTime(2020, 12, 10, 15, 5, 3, 240, DateTimeKind.Utc).AddTicks(4991),
                             Role = "modir",
                             Status = 1,
                             Title = "Admin",

@@ -18,6 +18,8 @@ namespace Websad.Storage.Core.Mappings
                 map.Property(_ => _.Password).HasMaxLength(100);
                 map.Property(_ => _.CoverPhoto).HasMaxLength(2000).IsUnicode();
                 map.Property(_ => _.AltTitle).HasMaxLength(2000).IsUnicode();
+                map.Property(_=> _.MetaDescription).HasMaxLength(1000).IsUnicode();
+                map.Property(_=> _.MetaRobots).HasMaxLength(1000).IsUnicode();
 
                 map.HasOne(_ => _.User)
                     .WithMany(_ => _.Posts)

@@ -79,6 +79,24 @@ namespace Websad.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The requested object not found..
+        /// </summary>
+        public static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The requested &apos;{0}&apos; not found..
+        /// </summary>
+        public static string NotFoundFormatted {
+            get {
+                return ResourceManager.GetString("NotFoundFormatted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string SuccessOperation {
