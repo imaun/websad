@@ -10,6 +10,8 @@ namespace Websad.Core.Models {
 
         public Block() {
             InnerBlocks = new HashSet<Block>();
+            PostBlocks = new HashSet<PostBlock>();
+            Samples = new HashSet<BlockSample>();
         }
 
         #region Properties
@@ -49,6 +51,8 @@ namespace Websad.Core.Models {
         public User AddedByUser { get; set; }
         public ICollection<Block> InnerBlocks { get; set; }
         public Block Parent { get; set; }
+        public ICollection<PostBlock> PostBlocks { get; set; }
+        public ICollection<BlockSample> Samples { get; set; }
 
         #endregion
     }

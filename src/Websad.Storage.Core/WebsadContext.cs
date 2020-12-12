@@ -145,6 +145,9 @@ namespace Websad.Storage.Core
             builder.AddFileMapping();
             builder.AddUserMapping();
             builder.AddWidgetMapping();
+            builder.AddBlockMapping();
+            builder.AddPostBlockMapping();
+            builder.AddBlockSampleMapping();
         }
 
         #endregion

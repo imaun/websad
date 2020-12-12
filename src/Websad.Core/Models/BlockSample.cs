@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Websad.Core.Enum;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Websad.Core.Models {
 

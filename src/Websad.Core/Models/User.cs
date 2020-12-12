@@ -13,7 +13,11 @@ namespace Websad.Core.Models
             Likes = new HashSet<PostLike>();
             Files = new HashSet<File>();
             Comments = new HashSet<Comment>();
+            AddedBlocks = new HashSet<Block>();
+            AddedPostBlocks = new HashSet<PostBlock>();
         }
+
+        #region Properties
 
         public int Id { get; set; }
         public UserStatus Status { get; set; }
@@ -30,9 +34,18 @@ namespace Websad.Core.Models
         public string ApiKey { get; set; }
         public bool LockoutEnabled { get; set; }
         public DateTime? LockoutEnd { get; set; }
+
+        #endregion
+
+        #region Navigations
+
         public ICollection<Post> Posts { get; set; }
         public ICollection<PostLike> Likes { get; set; }
         public ICollection<File> Files { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<Block> AddedBlocks { get; set; }
+        public ICollection<PostBlock> AddedPostBlocks { get; set; }
+        #endregion
     }
 }
+

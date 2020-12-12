@@ -13,8 +13,10 @@ namespace Websad.Core.Models
             Files = new HashSet<PostFile>();
             Meta = new HashSet<PostMeta>();
             Comments = new HashSet<Comment>();
+            PostBlocks = new HashSet<PostBlock>();
         }
 
+        #region Properties
         public int Id { get; set; }
         public int CategoryId { get; set; }
         public string Title { get; set; }
@@ -37,6 +39,8 @@ namespace Websad.Core.Models
         public DateTime ModifyDate { get; set; }
         public int UserId { get; set; }
 
+        #endregion
+
         #region SEO Related
 
         public string MetaDescription { get; set; }
@@ -50,6 +54,7 @@ namespace Websad.Core.Models
         public ICollection<PostFile> Files { get; set; }
         public ICollection<PostMeta> Meta { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<PostBlock> PostBlocks { get; set; }
         public User User { get; set; }
         public Category Category { get; set; }
 
