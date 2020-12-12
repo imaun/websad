@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Websad.Core.Enum;
 
-namespace Websad.Core.Models
-{
+namespace Websad.Core.Models {
+
     [Table(name: "Categories")]
     public class Category
     {
