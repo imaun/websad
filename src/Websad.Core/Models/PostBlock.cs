@@ -14,7 +14,7 @@ namespace Websad.Core.Models {
         public long Id { get; set; }
         public int PostId { get; set; }
         public Guid BlockId { get; set; }
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public int OrderNumber { get; set; }
         public PostBlockStatus Status { get; set; }
         public string OutputSrc { get; set; } //Rendered HTML src for this Block

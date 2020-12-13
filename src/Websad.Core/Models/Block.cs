@@ -44,7 +44,7 @@ namespace Websad.Core.Models {
         /// An array of keywords seperated by comma to represents <see cref="Block"/>'s applications.
         /// </summary>
         public string Keywords { get; set; }
-        public Guid AddedByUserId { get; set; }
+        public int AddedByUserId { get; set; }
         #endregion
 
         #region Navigations

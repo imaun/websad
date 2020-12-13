@@ -9,9 +9,10 @@ namespace Websad.Core.Models {
     {
         public Category() {
             Status = EntityStatus.Enabled;
-            //Lang = 
             Posts = new List<Post>();
         }
+
+        #region Properties
 
         public int Id { get; set; }
         public string Title { get; set; }
@@ -21,6 +22,11 @@ namespace Websad.Core.Models {
         public int? ParentId { get; set; }
         public string Description { get; set; }
         public EntityStatus Status { get; set; }
+        #endregion
+
+        #region Navigations
         public ICollection<Post> Posts { get; set; }
+
+        #endregion
     }
 }
