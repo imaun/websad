@@ -8,6 +8,7 @@ using Websad.Core.Enum;
 using Websad.Core.Extensions;
 using Websad.Services.Contracts;
 using Websad.Services.Factories;
+using Websad.Core.Models;
 
 namespace Websad.Services
 {
@@ -50,12 +51,25 @@ namespace Websad.Services
         }
 
 
+        private IQueryable<Post> getDetailQuery()
+            => _db.Posts
+                .Include(_ => _.User)
+                .Include(_ => _.Comments)
+                .Include(_ => _.Likes)
+                .Include(_ => _.Category)
+                .Include(_ => _.Meta)
+                .Include(_ => _.Files)
+                .ThenInclude(_ => _.File)
+                .Include(_ => _.PostBlocks)
+                .ThenInclude(_ => _.Block)
+                .Include(_ => _.User);
 
-        public async Task<PostResultDto> GetPostDetailAsync(string postType, string slug) {
-            var post = await _db.Posts
-                .Include(_=> _.User)
-                .Include(_=> _.Comments)
-                .Include(_=> _.Likes)
+        //private 
+
+        public async Task<PostResultDto> GetPostDetailAsync(
+            string postType, 
+            string slug) {
+            var post = await getDetailQuery()
                 .FirstOrDefaultAsync(_ => _.PostType == postType 
                                           && _.Slug == slug
                                           && _.Status == PostStatus.Published
@@ -64,22 +78,34 @@ namespace Websad.Services
                 return null;
 
             var result = post.Adapt<PostResultDto>();
-            
+            return await Task.FromResult(result);
+        }
+
+        public async Task<PostResultDto> GetPostDetailAsync(
+            string postType, 
+            string slug, 
+            int categoryId) {
+            var post = await getDetailQuery()
+                .FirstOrDefaultAsync(_ => _.PostType == postType
+                                          && _.Slug == slug
+                                          && _.CategoryId == categoryId
+                                          && _.Status == PostStatus.Published
+                                          && _.PublishDate <= _dateService.UtcNow());
+            if (post == null)
+                return null;
+
+            var result = post.Adapt<PostResultDto>();
             return await Task.FromResult(result);
         }
 
         public async Task<PostResultDto> GetPostDetailAsync(int id) {
-            var post = await _db.Posts
-                .Include(_ => _.User)
-                .Include(_ => _.Comments)
-                .Include(_ => _.Likes)
+            var post = await getDetailQuery()
                 .FirstOrDefaultAsync(_ => _.Id == id);
 
             if (post == null)
                 return null;
 
             var result = post.Adapt<PostResultDto>();
-
             return await Task.FromResult(result);
         }
 
@@ -126,6 +152,23 @@ namespace Websad.Services
                 PageSize = param.PageSize
             };
 
+            return await Task.FromResult(result);
+        }
+
+        public async Task<PostResultDto> GetPostDetailAsync(
+            string postType, 
+            string slug, 
+            string categorySlug) {
+            var post = await getDetailQuery()
+                .FirstOrDefaultAsync(_ => _.PostType == postType
+                                          && _.Slug == slug
+                                          && _.Category.Slug.ToUpper() == categorySlug.ToUpper()
+                                          && _.Status == PostStatus.Published
+                                          && _.PublishDate <= _dateService.UtcNow());
+            if (post == null)
+                return null;
+
+            var result = post.Adapt<PostResultDto>();
             return await Task.FromResult(result);
         }
     }

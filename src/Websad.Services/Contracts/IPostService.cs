@@ -9,6 +9,14 @@ namespace Websad.Services.Contracts
         Task<PostResultDto> UpdateAsync(PostUpdateDto model);
         Task<PostResultDto> GetPostDetailAsync(int id);
         Task<PostResultDto> GetPostDetailAsync(string postType, string slug);
+        Task<PostResultDto> GetPostDetailAsync(
+            string postType,
+            string slug,
+            int categoryId);
+        Task<PostResultDto> GetPostDetailAsync(
+            string postType,
+            string slug,
+            string categorySlug);
         Task<PostResultDto> GetPostAsync(int id);
         Task<PostViewListDto> GetPublishedViewListAsync(ViewListParam<PostViewListFilter> param);
     }

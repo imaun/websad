@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Websad.Core.Enum;
 
-namespace Websad.Services.Data
-{
+namespace Websad.Services.Data {
+
     public class CategoryResultDto {
         public int Id { get; set; }
         public string Title { get; set; }

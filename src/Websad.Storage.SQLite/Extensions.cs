@@ -14,9 +14,9 @@ namespace Websad.Storage.SQLite
             this IServiceCollection services,
             WebsadConfig setting) {
             services.AddEntityFrameworkSqlite(); // It's added to access services from the dbcontext, remove it if you are using the normal `AddDbContext` and normal constructor dependency injection.
-            //services.AddScoped<WebsadContext>(serviceProvider =>
-            //    serviceProvider.GetRequiredService<SQLiteDbContext>());
-            
+            services.AddScoped(serviceProvider =>
+                serviceProvider.GetRequiredService<WebsadContext>());
+
             services.AddDbContextPool<IWebsadContext, SQLiteDbContext>(
                 (serviceProvider, optionsBuilder) => optionsBuilder.Configure(setting, serviceProvider));
             return services;

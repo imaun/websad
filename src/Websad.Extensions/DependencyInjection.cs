@@ -70,6 +70,7 @@ namespace Websad.Extensions
         public static void AddWebsadServices(this IServiceCollection services) {
             var appSetting = GetAppSetting(services);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<WebsadConfig>(appSetting);
             services.AddSecurityServices();
             services.AddDatabaseServices(appSetting);
             services.AddApplicationServices();
