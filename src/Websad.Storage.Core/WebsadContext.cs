@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Websad.Core.Models;
 using Websad.Core.Contracts;
 using Websad.Storage.Core.Mappings;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Websad.Storage.Core
 {
@@ -42,6 +43,8 @@ namespace Websad.Storage.Core
         public void RemoveRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class {
             Set<TEntity>().RemoveRange(entities);
         }
+
+        public DatabaseFacade Storage => Database; 
 
         public void MarkAsChanged<TEntity>(TEntity entity) where TEntity : class {
             Update(entity);

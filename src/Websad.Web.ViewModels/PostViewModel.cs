@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using DNTPersianUtils.Core;
 using Websad.Core.Enum;
 
-namespace Websad.Web.ViewModels
-{
+namespace Websad.Web.ViewModels {
 
     public class PostViewModel {
         public int Id { get; set; }
@@ -48,8 +47,7 @@ namespace Websad.Web.ViewModels
 
     }
 
-    public class PostViewItemViewModel
-    {
+    public class PostViewItemViewModel {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Slug { get; set; }
@@ -58,13 +56,15 @@ namespace Websad.Web.ViewModels
         public int CommentsCount { get; set; }
         public string Summary { get; set; }
         public DateTime PublishDate { get; set; }
-        public string PublishDateDisplay => PublishDate.ToPersianDateTextify();
+        public string PublishDateDisplay => PublishDate
+            .ToFriendlyPersianDateTextify();
         public string PublishDateMonth => PublishDate
             .GetPersianMonth()
             .GetPersianMonthName();
         public string PublishDateDay => PublishDate
             .GetPersianDayOfMonth().ToString();
-
+        public string Tags { get; set; }
+        public IEnumerable<string> TagList => Tags.Split(';');
     }
 
     public class OtherPostViewModel {

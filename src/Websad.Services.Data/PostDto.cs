@@ -134,6 +134,7 @@ namespace Websad.Services.Data {
         public int CommentsCount { get; set; }
         public string Summary { get; set; }
         public DateTime PublishDate { get; set; }
+        public string Tags { get; set; }
     }
 
     public class PostViewListDto: ViewListDto<PostViewItemDto> {

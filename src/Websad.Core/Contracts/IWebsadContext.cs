@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Websad.Core.Models;
 
 namespace Websad.Core.Contracts
@@ -41,6 +42,10 @@ namespace Websad.Core.Contracts
         void CommitTransaction();
         void ExecuteSqlInterpolatedCommand(FormattableString query);
         void ExecuteSqlRawCommand(string query, params object[] parameters);
+        #endregion
+
+        #region Properties
+        DatabaseFacade Storage { get; }
         #endregion
     }
 }

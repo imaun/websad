@@ -42,6 +42,9 @@ namespace Websad.Storage.SQLite
             });
         }
 
+        public static void Migrate(this IWebsadContext context) {
+            context.Storage.Migrate();
+        }
 
         public static string GetSQLiteDbConnectionString(this WebsadConfig setting) {
             if (setting == null) {

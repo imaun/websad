@@ -79,7 +79,6 @@ namespace Websad.Api.Controllers
                 Message = ApiTextDisplay.SuccessOperation
             };
 
-
             return StatusCode((int)HttpStatusCode.Created, result);
         }
 

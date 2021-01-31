@@ -125,9 +125,19 @@ namespace Websad.Services
             
             var query = _db.Posts
                 .Include(_ => _.User)
-                .Where(_ => _.PostType == param.Filter.PostType &&
-                            _.Lang == param.Filter.Lang &&
-                            _.Status == PostStatus.Published);
+                .Where(_ => _.Status == PostStatus.Published);
+
+            if(param.Filter != null) {
+                if (!string.IsNullOrWhiteSpace(param.Filter.PostType))
+                    query = query.Where(_ => _.PostType.ToUpper() == param.Filter.PostType.ToUpper());
+
+                if (!string.IsNullOrWhiteSpace(param.Filter.Title))
+                    query = query.Where(_ => _.Title.Contains(param.Filter.Title));
+
+                if (!string.IsNullOrWhiteSpace(param.Filter.Lang))
+                    query = query.Where(_ => _.Lang.ToUpper() == param.Filter.Lang.ToUpper());
+            }
+
 
             query = query
                 .OrderByDescending(_ => _.PublishDate)
@@ -145,7 +155,8 @@ namespace Websad.Services
                         LikesCount = _.Likes.Count(),
                         Id = _.Id,
                         PublishDate = _.PublishDate.Value,
-                        Summary = _.Summary
+                        Summary = _.Summary,
+                        Tags = _.Tags
                     }).ToListAsync(),
                 TotalCount = query.Count(),
                 PageIndex = param.PageIndex,

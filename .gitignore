@@ -317,3 +317,6 @@ ASALocalRun/
 
 # Ignore Website
 website/
+
+# Ignore Client
+client/
