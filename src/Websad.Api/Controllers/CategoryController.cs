@@ -8,9 +8,11 @@ using Websad.Core.Exceptions;
 using Websad.Core.Extensions;
 using Websad.Services.Contracts;
 using Websad.Services.Data;
+using Websad.Resources;
+using System.Collections.Generic;
 
-namespace Websad.Api.Controllers
-{
+namespace Websad.Api.Controllers {
+
     [Route("api/category")]
     [Authorize]
     public class CategoryController: WebsadBaseApiController {
@@ -62,6 +64,24 @@ namespace Websad.Api.Controllers
             });
         }
 
+        [HttpGet("[action]/{postType}")]
+        public async Task<IActionResult> Get([FromRoute]string postType) {
+            if (string.IsNullOrWhiteSpace(postType))
+                return BadRequest(new CategoryListApiModel {
+                    HasError = true,
+                    Message = ApiTextDisplay.InsufficientParams
+                        .AddMessage(nameof(postType)),
+                    Model = null
+                });
+
+            var cats = await _categoryService
+                .GetPostTypeCategoriesAsync(postType);
+            var result = new CategoryListApiModel(postType) {
+                Model = cats.Adapt<List<CategoryApiModel>>()
+            };
+
+            return Ok(result);
+        }
 
     }
 }

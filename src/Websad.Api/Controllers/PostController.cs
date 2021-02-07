@@ -34,7 +34,7 @@ namespace Websad.Api.Controllers
 
         [HttpPost("[action]")]
         public async Task<IActionResult> Create(
-            [FromForm]PostCreateApiModel model
+            [FromBody]PostCreateApiModel model
         ) {
             model.CheckArgumentIsNull(nameof(model));
 
@@ -59,7 +59,9 @@ namespace Websad.Api.Controllers
                 }
                 coverPhotoUrl = uploadResult.ToString();
             }
-
+            else if (!string.IsNullOrWhiteSpace(model.CoverPhotoUrl))
+                coverPhotoUrl = model.CoverPhotoUrl;
+            
             var postData = model.Adapt<PostCreateDto>();
             postData.CoverPhoto = coverPhotoUrl;
             PostResultDto serviceResult;
@@ -84,7 +86,7 @@ namespace Websad.Api.Controllers
 
         [HttpPost("[action]")]
         public async Task<IActionResult> Update(
-            [FromForm]PostUpdateApiModel model
+            [FromBody]PostUpdateApiModel model
         ) {
             model.CheckArgumentIsNull(nameof(model));
             if (!ModelState.IsValid) {
@@ -107,6 +109,8 @@ namespace Websad.Api.Controllers
                 }
                 coverPhotoUrl = uploadResult.ToString();
             }
+            else if (!string.IsNullOrWhiteSpace(model.CoverPhotoUrl))
+                coverPhotoUrl = model.CoverPhotoUrl;
 
             var data = model.Adapt<PostUpdateDto>();
             data.CoverPhoto = coverPhotoUrl;

@@ -100,6 +100,11 @@ namespace Websad.Services.Data {
         public string Tags { get; set; } //Sepetared by semicolon ;
         public string MetaDescription { get; set; }
         public string MetaRobots { get; set; }
+
+        /// <summary>
+        /// If set to NULL CreateDate will fill automatically by the server
+        /// </summary>
+        public DateTime? CreateDate { get; set; }
     }
 
     public class PostUpdateDto {
@@ -123,6 +128,10 @@ namespace Websad.Services.Data {
         public string Tags { get; set; } //Sepetared by semicolon ;
         public string MetaDescription { get; set; }
         public string MetaRobots { get; set; }
+        /// <summary>
+        /// If set to NULL CreateDate will fill automatically by the server
+        /// </summary>
+        public DateTime? CreateDate { get; set; }
     }
 
     public class PostViewItemDto {

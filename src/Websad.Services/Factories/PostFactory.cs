@@ -44,8 +44,14 @@ namespace Websad.Services.Factories
             if (string.IsNullOrWhiteSpace(entity.Slug))
                 entity.Slug = entity.Title.MakeSlug();
 
-            entity.CreateDate = 
-                entity.ModifyDate = _dateService.UtcNow();
+            var now = _dateService.UtcNow();
+
+            if (model.CreateDate.HasValue)
+                entity.CreateDate = model.CreateDate.Value;
+            else
+                entity.CreateDate = now;
+
+            entity.ModifyDate = now;
             
             if (model.Status == PostStatus.Published)
                 entity.PublishDate = _dateService.UtcNow();
@@ -63,7 +69,10 @@ namespace Websad.Services.Factories
             entity.CheckReferenceIsNull(nameof(entity));
             
             entity.GetUpdateData(model);
-            
+
+            if (model.CreateDate.HasValue)
+                entity.CreateDate = model.CreateDate.Value;
+
             entity.Slug = entity.Slug.MakeSlug();
             if (string.IsNullOrWhiteSpace(entity.Slug))
                 entity.Slug = entity.Title.MakeSlug();

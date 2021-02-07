@@ -79,6 +79,15 @@ namespace Websad.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insufficient Params : {0}.
+        /// </summary>
+        public static string InsufficientParams {
+            get {
+                return ResourceManager.GetString("InsufficientParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The requested object not found..
         /// </summary>
         public static string NotFound {

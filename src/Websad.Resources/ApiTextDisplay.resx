@@ -123,6 +123,9 @@
   <data name="FailedWith" xml:space="preserve">
     <value>Failed operation with error : {0}</value>
   </data>
+  <data name="InsufficientParams" xml:space="preserve">
+    <value>Insufficient Params : {0}</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>The requested object not found.</value>
   </data>

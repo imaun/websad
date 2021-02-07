@@ -36,6 +36,12 @@ namespace Websad.Api.Models
         public string MetaRobots { get; set; }
 
         public IFormFile CoverPhotoFile { get; set; }
+        public string CoverPhotoUrl { get; set; }
+
+        /// <summary>
+        /// If set to NULL CreateDate will fill automatically by the server
+        /// </summary>
+        public DateTime? CreateDate { get; set; }
     }
 
     public class PostUpdateApiModel {
@@ -70,6 +76,11 @@ namespace Websad.Api.Models
         public string MetaRobots { get; set; }
 
         public IFormFile CoverPhotoFile { get; set; }
+        public string CoverPhotoUrl { get; set; }
+        /// <summary>
+        /// If set to NULL CreateDate will fill automatically by the server
+        /// </summary>
+        public DateTime? CreateDate { get; set; }
     }
 
     public class PostApiModel {
