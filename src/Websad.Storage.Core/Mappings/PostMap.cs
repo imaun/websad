@@ -11,7 +11,7 @@ namespace Websad.Storage.Core.Mappings
 
                 map.Property(_ => _.Title).HasMaxLength(1000).IsUnicode().IsRequired();
                 map.Property(_ => _.Slug).HasMaxLength(2000).IsUnicode();
-                map.Property(_ => _.Body).HasMaxLength(4000).IsUnicode();
+                map.Property(_ => _.Body).IsUnicode();
                 map.Property(_ => _.PostType).HasMaxLength(100).IsUnicode();
                 map.Property(_ => _.Lang).HasMaxLength(20).IsUnicode();
                 map.Property(_ => _.Summary).HasMaxLength(2000).IsUnicode();

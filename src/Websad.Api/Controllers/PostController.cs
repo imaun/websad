@@ -39,7 +39,7 @@ namespace Websad.Api.Controllers
             model.CheckArgumentIsNull(nameof(model));
 
             if(!ModelState.IsValid) {
-                return BadRequest(new ApiModel<PostApiModel> {
+                return Ok(new ApiModel<PostApiModel> {
                     HasError = true,
                     Model = null,
                     Message = ModelState.GetModelErrorMessages()
@@ -69,7 +69,7 @@ namespace Websad.Api.Controllers
                 serviceResult = await _postService.CreateAsync(postData);
             }
             catch (Exception e) {
-                return BadRequest(new ApiModel<PostApiModel> {
+                return Ok(new ApiModel<PostApiModel> {
                     HasError = true,
                     Model = null,
                     Message = e.GetBaseException().Message

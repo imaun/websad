@@ -21,7 +21,10 @@ namespace Websad.Core.Models
         public int CategoryId { get; set; }
         public string Title { get; set; }
         public string Slug { get; set; }
+
+        [Column(TypeName = "TEXT")]
         public string Body { get; set; }
+
         public string Summary { get; set; }
         public PostStatus Status { get; set; }
         public PostBodyType BodyType { get; set; }

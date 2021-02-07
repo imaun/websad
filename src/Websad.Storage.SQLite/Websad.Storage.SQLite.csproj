@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210207092042_BodyAsTEXT.cs" />
+    <Compile Remove="Migrations\20210207092042_BodyAsTEXT.Designer.cs" />
+    <Compile Remove="Migrations\20210207092541_BodyAsTEXT.cs" />
+    <Compile Remove="Migrations\20210207092541_BodyAsTEXT.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />

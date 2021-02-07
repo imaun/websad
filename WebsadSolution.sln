@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Websad.Client.UI", "Client\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstaSample", "client\InstaSample\InstaSample.csproj", "{3398798B-A4CC-407F-A74F-74E4F8F5E905}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deskyar", "Client\Deskyar\Deskyar.csproj", "{908FA06C-3BFE-4D32-B0AA-11638D264371}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{3398798B-A4CC-407F-A74F-74E4F8F5E905}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3398798B-A4CC-407F-A74F-74E4F8F5E905}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3398798B-A4CC-407F-A74F-74E4F8F5E905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{908FA06C-3BFE-4D32-B0AA-11638D264371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{908FA06C-3BFE-4D32-B0AA-11638D264371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{908FA06C-3BFE-4D32-B0AA-11638D264371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{908FA06C-3BFE-4D32-B0AA-11638D264371}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +131,7 @@ Global
 		{EF6EE886-D144-4DCA-9F59-B5CFA082CC75} = {8D09F8EB-C738-4F6E-96C1-821069BFD541}
 		{BC0E9A41-4261-461A-B5D7-35FB9D5E7307} = {8D09F8EB-C738-4F6E-96C1-821069BFD541}
 		{3398798B-A4CC-407F-A74F-74E4F8F5E905} = {8D09F8EB-C738-4F6E-96C1-821069BFD541}
+		{908FA06C-3BFE-4D32-B0AA-11638D264371} = {8D09F8EB-C738-4F6E-96C1-821069BFD541}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EDE839C2-4DC6-4C32-8F26-6C4E4E7BEC06}

@@ -12,7 +12,7 @@ namespace Websad.Api.Models
         public int CategoryId { get; set; }
         [MaxLength(2000)]
         public string Slug { get; set; }
-        [MaxLength(4000)]
+        
         public string Body { get; set; }
         public PostBodyType BodyType { get; set; }
         [MaxLength(2000)]
@@ -51,7 +51,7 @@ namespace Websad.Api.Models
         public int CategoryId { get; set; }
         [Required, MaxLength(2000)]
         public string Slug { get; set; }
-        [MaxLength(4000)]
+        
         public string Body { get; set; }
         public PostBodyType BodyType { get; set; }
         [MaxLength(2000)]
