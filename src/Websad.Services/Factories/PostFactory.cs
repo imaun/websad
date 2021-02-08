@@ -53,8 +53,12 @@ namespace Websad.Services.Factories
 
             entity.ModifyDate = now;
             
-            if (model.Status == PostStatus.Published)
-                entity.PublishDate = _dateService.UtcNow();
+            if (model.Status == PostStatus.Published) {
+                if (model.PublishDate.HasValue)
+                    entity.PublishDate = model.PublishDate.Value;
+                else
+                    entity.PublishDate = _dateService.UtcNow();
+            }                
 
             if (!string.IsNullOrWhiteSpace(model.Password))
                 entity.Password = model.Password.GetHashOfString();
@@ -72,6 +76,11 @@ namespace Websad.Services.Factories
 
             if (model.CreateDate.HasValue)
                 entity.CreateDate = model.CreateDate.Value;
+
+            if(entity.Status == PostStatus.Published) {
+                if (model.PublishDate.HasValue)
+                    entity.PublishDate = model.PublishDate.Value;
+            }
 
             entity.Slug = entity.Slug.MakeSlug();
             if (string.IsNullOrWhiteSpace(entity.Slug))

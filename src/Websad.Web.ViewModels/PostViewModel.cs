@@ -64,14 +64,17 @@ namespace Websad.Web.ViewModels {
         public string PublishDateDay => PublishDate
             .GetPersianDayOfMonth().ToString();
         public string Tags { get; set; }
+        public string CoverPhoto { get; set; }
         public IEnumerable<string> TagList => Tags.Split(';');
     }
 
     public class OtherPostViewModel {
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Slug { get; set; }
         public string Author { get; set; }
         public string AltTitle { get; set; }
+        public string Summary { get; set; }
         public DateTime PublishDate { get; set; }
         public string PublishDateDisplay => PublishDate.ToPersianDateTextify();
     }

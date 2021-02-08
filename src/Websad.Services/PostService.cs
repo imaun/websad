@@ -10,10 +10,10 @@ using Websad.Services.Contracts;
 using Websad.Services.Factories;
 using Websad.Core.Models;
 
-namespace Websad.Services
-{
-    public class PostService : IPostService
-    {
+namespace Websad.Services {
+
+    public class PostService : IPostService {
+
         private readonly IWebsadContext _db;
         private readonly IPostFactory _factory;
         private readonly IDateService _dateService;
@@ -41,7 +41,6 @@ namespace Websad.Services
             return await Task.FromResult(entity.Adapt<PostResultDto>());
         }
 
-
         public async Task<PostResultDto> UpdateAsync(PostUpdateDto model) {
             var entity = await _factory.MakeAsync(model);
             _db.Posts.Update(entity);
@@ -50,23 +49,7 @@ namespace Websad.Services
             return await Task.FromResult(entity.Adapt<PostResultDto>());
         }
 
-
-        private IQueryable<Post> getDetailQuery()
-            => _db.Posts
-                .Include(_ => _.User)
-                .Include(_ => _.Comments)
-                .Include(_ => _.Likes)
-                .Include(_ => _.Category)
-                .Include(_ => _.Meta)
-                .Include(_ => _.Files)
-                .ThenInclude(_ => _.File)
-                .Include(_ => _.PostBlocks)
-                .ThenInclude(_ => _.Block)
-                .Include(_ => _.User);
-
-        //private 
-
-        public async Task<PostResultDto> GetPostDetailAsync(
+        public async Task<PostDetailDto> GetPostDetailAsync(
             string postType, 
             string slug) {
             var post = await getDetailQuery()
@@ -74,14 +57,16 @@ namespace Websad.Services
                                           && _.Slug == slug
                                           && _.Status == PostStatus.Published
                                           && _.PublishDate <= _dateService.UtcNow());
-            if (post == null)
-                return null;
-
-            var result = post.Adapt<PostResultDto>();
-            return await Task.FromResult(result);
+            return await output(post);
         }
 
-        public async Task<PostResultDto> GetPostDetailAsync(
+        public async Task<int> GetCommentsCountAsync(int postId) 
+            => await _db.Comments.CountAsync(_ => _.PostId == postId);
+
+        public async Task<int> GetLikesCountAsync(int postId)
+            => await _db.Likes.CountAsync(_ => _.PostId == postId);
+
+        public async Task<PostDetailDto> GetPostDetailAsync(
             string postType, 
             string slug, 
             int categoryId) {
@@ -91,22 +76,14 @@ namespace Websad.Services
                                           && _.CategoryId == categoryId
                                           && _.Status == PostStatus.Published
                                           && _.PublishDate <= _dateService.UtcNow());
-            if (post == null)
-                return null;
-
-            var result = post.Adapt<PostResultDto>();
-            return await Task.FromResult(result);
+            return await output(post);
         }
 
-        public async Task<PostResultDto> GetPostDetailAsync(int id) {
+        public async Task<PostDetailDto> GetPostDetailAsync(int id) {
             var post = await getDetailQuery()
                 .FirstOrDefaultAsync(_ => _.Id == id);
 
-            if (post == null)
-                return null;
-
-            var result = post.Adapt<PostResultDto>();
-            return await Task.FromResult(result);
+            return await output(post);
         }
 
         public async Task<PostResultDto> GetPostAsync(int id) {
@@ -156,7 +133,9 @@ namespace Websad.Services
                         Id = _.Id,
                         PublishDate = _.PublishDate.Value,
                         Summary = _.Summary,
-                        Tags = _.Tags
+                        Tags = _.Tags,
+                        AltTitle = _.AltTitle,
+                        CoverPhoto = _.CoverPhoto
                     }).ToListAsync(),
                 TotalCount = query.Count(),
                 PageIndex = param.PageIndex,
@@ -166,7 +145,7 @@ namespace Websad.Services
             return await Task.FromResult(result);
         }
 
-        public async Task<PostResultDto> GetPostDetailAsync(
+        public async Task<PostDetailDto> GetPostDetailAsync(
             string postType, 
             string slug, 
             string categorySlug) {
@@ -176,11 +155,35 @@ namespace Websad.Services
                                           && _.Category.Slug.ToUpper() == categorySlug.ToUpper()
                                           && _.Status == PostStatus.Published
                                           && _.PublishDate <= _dateService.UtcNow());
+
+            return await output(post);
+        }
+
+        #region Private Helper Methods
+        private IQueryable<Post> getDetailQuery()
+            => _db.Posts
+                .Include(_ => _.User)
+                .Include(_ => _.Category)
+                .Include(_ => _.Meta)
+                .Include(_ => _.Files)
+                .ThenInclude(_ => _.File)
+                .Include(_ => _.PostBlocks)
+                .ThenInclude(_ => _.Block);
+
+        private async Task<PostDetailDto> output(Post post) {
             if (post == null)
                 return null;
 
-            var result = post.Adapt<PostResultDto>();
-            return await Task.FromResult(result);
+            var result = new PostDetailDto {
+                Id = post.Id,
+                Post = post.Adapt<PostResultDto>()
+            };
+            result.Post.CommentsCount = await GetCommentsCountAsync(post.Id);
+            result.Post.LikesCount = await GetLikesCountAsync(post.Id);
+
+            return result;
         }
+
+        #endregion
     }
 }
